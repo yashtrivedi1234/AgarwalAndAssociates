@@ -18,7 +18,10 @@ const corsOptions = {
         "https://agarwal-associates.netlify.app",
         "https://agarwal-associates-admin.netlify.app",
         "https://architectrajnish.in",
-        "https://architectrajnish.in/admin"
+        "https://architectrajnish.in/admin",
+        "https://agarwalandassociates-od1i.onrender.com",
+        "https://agarwal-and-associates.vercel.app"
+
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
