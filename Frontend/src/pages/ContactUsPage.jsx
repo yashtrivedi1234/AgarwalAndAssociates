@@ -79,9 +79,16 @@ export default function ContactUsPage() {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email Us",
-      content: "associatesagarwallko@gmail.com",
+      content: "rajnish@architectrajnish.in",
       details: "We'll respond within 24 hours",
-      link: "mailto:associatesagarwallko@gmail.com",
+      link: "mailto:rajnish@architectrajnish.in",
+    },
+    {
+      icon: <Mail className="w-6 h-6" />,
+      title: "Alternate Email",
+      content: "info@architectrajnish.in",
+      details: "For general inquiries",
+      link: "mailto:info@architectrajnish.in",
     },
     {
       icon: <MapPin className="w-6 h-6" />,

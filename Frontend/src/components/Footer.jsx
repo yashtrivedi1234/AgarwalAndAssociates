@@ -202,11 +202,20 @@ const Footer = () => {
               </li> */}
               <li>
               <a aria-label="gmail"
-                href="mailto:associatesagarwallko@gmail.com"
+                href="mailto:rajnish@architectrajnish.in"
                 target="_blank"
                 className="flex items-center space-x-3"
               >
-                <Mail size={18} className="self-center"/> <span>associatesagarwallko@gmail.com </span>
+                <Mail size={18} className="self-center"/> <span>rajnish@architectrajnish.in</span>
+              </a>
+              </li>
+              <li>
+              <a aria-label="gmail"
+                href="mailto:info@architectrajnish.in"
+                target="_blank"
+                className="flex items-center space-x-3"
+              >
+                <Mail size={18} className="self-center"/> <span>info@architectrajnish.in</span>
               </a>
               </li>
               <li>

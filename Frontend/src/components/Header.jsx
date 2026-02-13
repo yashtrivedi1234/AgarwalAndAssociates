@@ -7,6 +7,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const headerRef = React.useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +19,19 @@ export default function Header() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        setIsMenuOpen(false);
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const toggleMenu = () => {
@@ -79,6 +93,7 @@ export default function Header() {
 
   return (
     <header
+      ref={headerRef}
       className={`fixed w-full z-50 transition-all duration-300  ${
         isScrolled
           ? "bg-white shadow-md pt-1"

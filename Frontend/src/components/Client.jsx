@@ -37,39 +37,27 @@ const clients = [
 
 const Clients = () => {
   return (
-    <section className="py-10 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 mb-8">
+    <section className="py-12 bg-gray-50 overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 mb-10">
         <h2 className="text-3xl font-bold text-center text-gray-800">
           Our Clients
         </h2>
       </div>
 
-      {/* speed={50}: Controls how fast it moves
-         pauseOnHover={true}: Stops when you mouse over
-         gradient={true}: Adds a nice fade effect on the sides
-      */}
-      <div className="py-4">
-        <Marquee
-          pauseOnHover={true}
-          speed={50}
-          gradient={true}
-          gradientColor="249, 250, 251"
-        >
-          {clients.map((client, index) => (
-            <div
-              key={index}
-              className="mx-8 flex items-center justify-center group"
-            >
-              {/* No cards, no borders, just the image properly sized */}
-              <img
-                src={client.logo}
-                alt={client.name}
-                className="h-20 w-auto object-cover transition-all duration-300 cursor-pointer group-hover:grayscale grayscale-0"
-              />
-            </div>
-          ))}
-        </Marquee>
-      </div>
+      <Marquee pauseOnHover speed={50} gradient={false}>
+        {clients.map((client, index) => (
+        <div className="mx-6 flex items-center justify-center">
+  <div className="bg-white rounded-xl border shadow-sm w-[220px] h-[150px] flex items-center justify-center overflow-hidden">
+    <img
+      src={client.logo}
+      alt={client.name}
+      className="block w-full h-full object-contain p-2"
+    />
+  </div>
+</div>
+
+        ))}
+      </Marquee>
     </section>
   );
 };

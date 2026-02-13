@@ -11,9 +11,13 @@ import { useEffect } from "react";
 export default function BlogPage() {
   const dispatch = useDispatch();
   const { blogData, error, status } = useSelector((state) => state.data);
+  const [hasFetched, setHasFetched] = useState(false);
   useEffect(() => {
-    dispatch(fetchBlogData());
-  }, [dispatch]);
+    if (!hasFetched) {
+      dispatch(fetchBlogData());
+      setHasFetched(true);
+    }
+  }, [dispatch, hasFetched]);
 
   const settings = {
     infinite: true,
@@ -63,9 +67,13 @@ export default function BlogPage() {
         <Slider {...settings}>
           {blogData.map((post) => (
             <div key={post.id} className="px-2">
-              <div className="bg-white  flex flex-col overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200">
+              <Link
+                to={`/blog-detail/${post.slug}`}
+                className="bg-white flex flex-col overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 focus:outline-none"
+                style={{ textDecoration: 'none' }}
+              >
                 {/* Image section */}
-                <div className=" overflow-hidden">
+                <div className="overflow-hidden">
                   <img
                     src={post.imageUrl}
                     alt={post.title}
@@ -104,16 +112,13 @@ export default function BlogPage() {
 
                   {/* Read More button */}
                   <div className="mt-auto">
-                    <Link
-                      to={`/blog-detail/${post.slug}`}
-                      className="inline-flex items-center text-sm font-medium text-black hover:text-gray-600 transition-colors duration-300"
-                    >
+                    <span className="inline-flex items-center text-sm font-medium text-black hover:text-gray-600 transition-colors duration-300">
                       Read More
                       <ArrowRight className="h-4 w-4 ml-1" />
-                    </Link>
+                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </Slider>
