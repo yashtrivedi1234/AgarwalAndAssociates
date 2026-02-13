@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+html, body{
+    /* font-family: "Nunito", sans-serif;
+    font-family: "Poppins", sans-serif; */
+    font-family: "Space Grotesk", sans-serif;
+}
+
+
+
+.text-primari{
+  color:#fb2c36 ;
+}
+.bg-primary{
+  background-color: #fb2c36 ;
+}
+
+
+  
+.blog ul{
+    list-style: disc !important;
+    margin-left: 25px;
+    /* list-style-position: inside !important; */
+  }
+  .blog ol{
+    list-style: decimal !important;
+     margin-left: 25px;
+    /* list-style-position: inside !important; */
+  }
+  
+  .blog h1{
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 40px;
+      margin-top: 10px;
+      margin-bottom: 4px;
+  }
+  .blog h2{
+    font-size: 23px;
+    font-weight: 600;
+    line-height: 32px;
+    margin-top: 10px;
+     margin-bottom: 4px;
+  }
+  .blog h3{
+    font-size: 20px;
+    margin-top: 1rem;
+    font-weight: 600;
+    line-height: 28px;
+     margin-top: 10px;
+     margin-bottom: 4px;
+  }
+  
+  .blog strong{
+    color: black !important;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: white;
+  }
+  
+  th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Responsive Table */
+  @media (max-width: 768px) {
+    table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }

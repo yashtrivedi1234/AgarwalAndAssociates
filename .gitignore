@@ -1,0 +1,8 @@
+Frontend/node_modules
+Backend/node_modules
+AdminPanel/node_modules
+Frontend/.env
+Backend/.env
+AdminPanel/.env
+PROFILE.pdf
+/PROFILE.pdf
