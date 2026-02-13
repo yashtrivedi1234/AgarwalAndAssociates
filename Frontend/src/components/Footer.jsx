@@ -153,7 +153,7 @@ const Footer = () => {
             <div className="space-y-4">
               {Array.isArray(blogData) &&
                 blogData.length > 0 &&
-                blogData?.slice(1, 4)?.map((blog, i) => (
+                blogData?.slice(0, 3)?.map((blog, i) => (
                   <Link aria-label="Blog-details"
                     key={i}
                     to={`/blog-detail/${blog.slug}`}
