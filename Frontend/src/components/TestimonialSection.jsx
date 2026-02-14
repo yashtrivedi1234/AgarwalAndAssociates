@@ -263,20 +263,7 @@ export default function GoogleMapEmbed() {
         </div>
 
         {/* Optional Stats Section */}
-        <div className="grid grid-cols-3 gap-4 md:gap-8 mt-12 max-w-3xl mx-auto">
-          <div className="text-center p-4 bg-white rounded-xl shadow-md">
-            <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">500+</div>
-            <div className="text-sm md:text-base text-gray-600">Happy Customers</div>
-          </div>
-          <div className="text-center p-4 bg-white rounded-xl shadow-md">
-            <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">4.9</div>
-            <div className="text-sm md:text-base text-gray-600">Average Rating</div>
-          </div>
-          <div className="text-center p-4 bg-white rounded-xl shadow-md">
-            <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">98%</div>
-            <div className="text-sm md:text-base text-gray-600">Satisfaction</div>
-          </div>
-        </div>
+        
 
       </div>
     </div>

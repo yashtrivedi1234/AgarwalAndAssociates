@@ -94,16 +94,16 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className={`fixed w-full z-50 transition-all duration-300  ${
+      className={`fixed w-full z-[9999] transition-all duration-300 ${
         isScrolled
           ? "bg-white shadow-md pt-1"
-          : "lg:bg-transparent bg-white lg:text-white pt-1"
+          : "lg:bg-transparent bg-white pt-1"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center ">
             <Link aria-label="Logo" to="/" className="flex items-center">
               <img src={logo} alt="logo" className="lg:h-20 h-16" />
             </Link>

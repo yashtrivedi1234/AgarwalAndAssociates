@@ -82,12 +82,12 @@ const BlogDetailPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       
       {/* Reading Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-gray-200 to-transparent z-50">
+      {/* <div className="fixed top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-gray-200 to-transparent z-50">
         <div 
           className="h-full bg-gradient-to-r from-primary-btn via-orange-500 to-pink-500 transition-all duration-300 shadow-lg shadow-primary-btn/50"
           style={{ width: `${scrollProgress}%` }}
         ></div>
-      </div>
+      </div> */}
 
       {/* Floating Action Buttons */}
       
@@ -100,15 +100,15 @@ const BlogDetailPage = () => {
         <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
       </div>
 
-      <Breadcrumb
+      {/* <Breadcrumb
         title="Blog Detail"
         items={[
           { name: "Blogs", path: "/blog" },
           { name: blog?.title, path: `/blog-details/${blog?.slug}` },
         ]}
-      />
+      /> */}
 
-      <div className="relative container mx-auto px-4 py-8 lg:py-16">
+      <div className="relative container mx-auto px-4 py-8 lg:py-16 mt-6">
         <div className="max-w-7xl mx-auto">
           
           {/* Hero Section - Split Screen Design */}
@@ -116,27 +116,9 @@ const BlogDetailPage = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               
               {/* Left - Content */}
-              <div className="space-y-8 order-2 lg:order-1">
+              <div className="space-y-8 order-2 lg:order-1 mt-6">
                 {/* Animated Category Tag */}
-                <div className="inline-flex items-center gap-4 group">
-                  <div className="relative">
-                    <div className="absolute -inset-2 bg-gradient-to-r from-primary-btn to-orange-500 rounded-full blur-lg opacity-75 group-hover:opacity-100 transition-opacity animate-pulse"></div>
-                    <div className="relative px-6 py-2.5 bg-white rounded-full shadow-xl border-2 border-primary-btn/20">
-                      <span className="text-primary-btn font-black text-sm uppercase tracking-wider">
-                        {blog.category}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="relative flex gap-1">
-                      <div className="w-2 h-2 bg-primary-btn rounded-full animate-ping absolute"></div>
-                      <div className="w-2 h-2 bg-primary-btn rounded-full"></div>
-                    </div>
-                    <span className="text-neutral-600 font-medium text-sm">
-                      {formattedDate(blog.updatedAt)}
-                    </span>
-                  </div>
-                </div>
+               
 
                 {/* Mega Title */}
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] messiri">
