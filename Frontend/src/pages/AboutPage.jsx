@@ -74,12 +74,7 @@ export default function AboutUsPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       
       {/* Reading Progress Bar */}
-      <div className="fixed top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-gray-200 to-transparent z-50">
-        <div 
-          className="h-full bg-gradient-to-r from-red-500 via-orange-500 to-pink-500 transition-all duration-300 shadow-lg shadow-red-500/50"
-          style={{ width: `${scrollProgress}%` }}
-        ></div>
-      </div>
+      
 
       {/* Animated Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
