@@ -1,6 +1,6 @@
 import { ChevronRight, Ruler, PenTool, Wrench, Compass, ClipboardList, Building, ArrowRight } from 'lucide-react';
 import s1 from '../assets/services/architectural.webp'
-import s2 from '../assets/services/intirior.webp'
+import s2 from '../assets/services/intirior.jpg'
 import s3 from '../assets/services/engineering.webp'
 import s4 from '../assets/services/vastu.webp'
 import s5 from '../assets/services/project-management.webp'

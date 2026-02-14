@@ -71,36 +71,25 @@ export default function ServicesList() {
 
   return (
     <section className="bg-[#FAFAFA] py-24 scroll-m-20 overflow-x-hidden" id="services">
-      {/* Top Badge and Heading */}
-      <div className="max-w-[1400px] mx-auto px-8 mb-16">
-        <div className="flex items-start gap-16">
-          {/* Left - Badge */}
-          <div className="pt-2">
-            <span className="inline-flex items-center gap-2 px-6 py-3 border border-[#C4975F] rounded-full text-sm font-medium text-gray-700">
-              <span className="w-2 h-2 rounded-full bg-[#C4975F]"></span>
-              OUR SERVICES
-            </span>
-          </div>
-
-          {/* Right - Heading and Description with animation */}
-          <motion.div
-            className="flex-1 flex flex-col items-center text-center"
-            initial={{ x: 200, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true, amount: 0.5 }}
-          >
-            <h2 className="text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-              Explore Our <span className="text-[#C4975F]">Comprehensive</span>
-              <br />
-              <span className="text-[#C4975F]">Interior Design</span> Services
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl">
-              We specialize in transforming visions into reality. Explore our portfolio of innovative architectural
-              and interior design projects crafted with precision.
-            </p>
-          </motion.div>
-        </div>
+      {/* Heading and Description Centered */}
+      <div className="max-w-full mx-auto px-8 mb-16">
+        <motion.div
+          className="flex flex-col items-center text-center"
+          initial={{ x: 200, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, amount: 0.5 }}
+        >
+          <h2 className="text-5xl xl:text-6xl font-bold mb-6 leading-tight">
+            Explore Our <span className="text-[#FF0000]">Comprehensive</span>
+            <br />
+            <span className="text-[#FF0000]">Interior Design</span> Services
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl">
+            We specialize in transforming visions into reality. Explore our portfolio of innovative architectural
+            and interior design projects crafted with precision.
+          </p>
+        </motion.div>
       </div>
 
       {/* Services Section */}
@@ -167,50 +156,45 @@ export default function ServicesList() {
                     className={`group cursor-pointer py-7 border-t border-b transition-all duration-300 ${
                       isActive 
                         ? (isFirst || isLast)
-                          ? 'border-t-[#C4975F] border-b-[#C4975F]' 
-                          : 'border-t-gray-200 border-b-[#C4975F] hover:border-t-[#C4975F]'
+                          ? 'border-t-[#FF0000] border-b-[#FF0000]' 
+                          : 'border-t-gray-200 border-b-[#FF0000] hover:border-t-[#FF0000]'
                         : (isFirst || isLast)
-                          ? 'border-t-gray-200 border-b-gray-200 hover:border-t-[#C4975F] hover:border-b-[#C4975F]'
-                          : 'border-t-gray-200 border-b-gray-200 hover:border-b-[#C4975F]'
+                          ? 'border-t-gray-200 border-b-gray-200 hover:border-t-[#FF0000] hover:border-b-[#FF0000]'
+                          : 'border-t-gray-200 border-b-gray-200 hover:border-b-[#FF0000]'
                     }`}
                   >
                     <div className="flex items-center justify-between pr-4">
-                      {/* Number + Title */}
+                      {/* Number + Title (merged) */}
                       <div className="flex items-center gap-6">
-                        {/* Number */}
                         <span
                           className={`text-xl font-light transition-all duration-300 ${
-                            isActive ? 'text-[#C4975F]' : 'text-gray-300 group-hover:text-[#C4975F]'
+                            isActive ? 'text-[#FF0000]' : 'text-gray-300 group-hover:text-[#FF0000]'
                           }`}
                         >
                           {String(index + 1).padStart(2, '0')}
                         </span>
-
-                        {/* Title */}
                         <div className="flex items-center gap-4">
                           <h3
                             className={`text-3xl xl:text-4xl font-bold transition-all duration-300 ${
-                              isActive ? 'text-[#C4975F]' : 'text-black group-hover:text-[#C4975F]'
+                              isActive ? 'text-[#FF0000]' : 'text-black group-hover:text-[#FF0000]'
                             }`}
                           >
                             {service.title}
                           </h3>
-                          
                           {/* Dot Indicator */}
                           {isActive && (
-                            <div className="w-2.5 h-2.5 rounded-full bg-[#C4975F]"></div>
+                            <div className="w-2.5 h-2.5 rounded-full bg-[#FF0000]"></div>
                           )}
                         </div>
                       </div>
-
                       {/* Arrow */}
                       <div className="flex-shrink-0">
                         {isActive ? (
-                          <div className="w-14 h-14 rounded-full bg-[#C4975F] flex items-center justify-center text-white text-xl transform transition-all duration-300 hover:scale-110">
+                          <div className="w-14 h-14 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-xl transform transition-all duration-300 hover:scale-110">
                             →
                           </div>
                         ) : (
-                          <div className="text-xl text-gray-400 transition-all duration-300 group-hover:text-[#C4975F]">
+                          <div className="text-xl text-gray-400 transition-all duration-300 group-hover:text-[#FF0000]">
                             ↗
                           </div>
                         )}
@@ -221,19 +205,6 @@ export default function ServicesList() {
               })}
             </div>
           </motion.div>
-        </div>
-      </div>
-
-      {/* Stats Section */}
-      <div className="max-w-[1400px] mx-auto px-8">
-        <div className="grid grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
-            <div key={index} className="text-left">
-              <h3 className="text-6xl font-bold mb-4">{stat.number}</h3>
-              <h4 className="text-xl font-bold mb-2">{stat.label}</h4>
-              <p className="text-gray-600 text-sm leading-relaxed">{stat.description}</p>
-            </div>
-          ))}
         </div>
       </div>
 

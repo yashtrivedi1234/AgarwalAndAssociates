@@ -242,7 +242,7 @@ export default function GoogleMapEmbed() {
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Customer Reviews
           </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto mb-6"></div>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             See what our customers are saying about their experience with us
           </p>
@@ -257,14 +257,7 @@ export default function GoogleMapEmbed() {
             title="Customer Reviews"
             className="absolute top-0 left-0 w-full h-full border-0"
           />
-          
-          {/* Loading Spinner */}
-         
         </div>
-
-        {/* Optional Stats Section */}
-        
-
       </div>
     </div>
   );

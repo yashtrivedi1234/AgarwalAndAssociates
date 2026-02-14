@@ -47,9 +47,9 @@ const Clients = () => {
             Trusted By Industry Leaders
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-white">
-            Our <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Clients</span>
+            Our <span className="bg-gradient-to-r from-red-400 to-red-500 bg-clip-text text-transparent">Clients</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto rounded-full"></div>
         </div>
       </div>
 
@@ -66,7 +66,7 @@ const Clients = () => {
                   />
                   
                   {/* Hover glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5 transition-all duration-300 rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 to-purple-500/0 group-hover:from-red-500/5 group-hover:to-purple-500/5 transition-all duration-300 rounded-2xl"></div>
                 </div>
               </div>
             </div>
