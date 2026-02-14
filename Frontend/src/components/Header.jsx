@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useIsHomePage } from "../hooks/useIsHomePage";
+import { useHasBreadcrumb } from "../hooks/useHasBreadcrumb";
 import { Menu, X, ChevronDown, Building2, Phone, ListFilter } from "lucide-react";
 import logo from '../assets/logo-removebg.png'
 
 export default function Header() {
+  const isHomePage = useIsHomePage();
+  const hasBreadcrumb = useHasBreadcrumb();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -96,8 +100,8 @@ export default function Header() {
       ref={headerRef}
       className={`fixed w-full z-[9999] transition-all duration-300 ${
         isScrolled
-          ? "bg-white shadow-md pt-1"
-          : "lg:bg-transparent bg-white pt-1"
+          ? 'bg-white shadow-md pt-1 text-black'
+          : `lg:bg-transparent bg-white pt-1 ${(isHomePage || hasBreadcrumb) ? 'text-white' : 'text-black'}`
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
@@ -110,7 +114,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center text-lg font-medium lg:ml-10">
+          <nav className={`hidden lg:flex items-center text-lg font-medium lg:ml-10 ${isScrolled ? 'text-black' : (isHomePage || hasBreadcrumb) ? 'text-white' : 'text-black'}` }>
             <ul className="flex space-x-6">
               {navItems.map((item, index) => (
                 <li key={index} className="relative group">
