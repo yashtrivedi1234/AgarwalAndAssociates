@@ -70,7 +70,7 @@ export default function ServicesList() {
   ];
 
   return (
-    <section className="bg-[#FAFAFA] py-24 scroll-m-20" id="services">
+    <section className="bg-[#FAFAFA] py-24 scroll-m-20 overflow-x-hidden" id="services">
       {/* Top Badge and Heading */}
       <div className="max-w-[1400px] mx-auto px-8 mb-16">
         <div className="flex items-start gap-16">
