@@ -37,27 +37,45 @@ const clients = [
 
 const Clients = () => {
   return (
-    <section className="py-12 bg-gray-50 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 mb-10">
-        <h2 className="text-3xl font-bold text-center text-gray-800">
-          Our Clients
-        </h2>
+    <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden relative">
+      {/* Subtle background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800/20 via-transparent to-transparent"></div>
+      
+      <div className="max-w-6xl mx-auto px-4 mb-16 relative z-10">
+        <div className="text-center space-y-3">
+          <p className="text-gray-400 text-sm font-medium tracking-wider uppercase">
+            Trusted By Industry Leaders
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white">
+            Our <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Clients</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+        </div>
       </div>
 
-      <Marquee pauseOnHover speed={50} gradient={false}>
-        {clients.map((client, index) => (
-        <div className="mx-6 flex items-center justify-center">
-  <div className="bg-white rounded-xl border shadow-sm w-[220px] h-[150px] flex items-center justify-center overflow-hidden">
-    <img
-      src={client.logo}
-      alt={client.name}
-      className="block w-full h-full object-contain p-2"
-    />
-  </div>
-</div>
+      <div className="relative z-10">
+        <Marquee pauseOnHover speed={40} gradient={false}>
+          {clients.map((client, index) => (
+            <div key={index} className="mx-4 group">
+              <div className="bg-white rounded-2xl border border-gray-200 w-[240px] h-[160px] flex items-center justify-center overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/20 hover:-translate-y-2">
+                <div className="relative w-full h-full flex items-center justify-center p-6">
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="block max-w-full max-h-full object-contain transition-all duration-300 group-hover:scale-110"
+                  />
+                  
+                  {/* Hover glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/5 group-hover:to-purple-500/5 transition-all duration-300 rounded-2xl"></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Marquee>
+      </div>
 
-        ))}
-      </Marquee>
+      {/* Bottom fade effect */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
     </section>
   );
 };

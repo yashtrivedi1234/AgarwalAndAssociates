@@ -89,7 +89,7 @@ const BlogDetailPage = () => {
         ></div>
       </div> */}
 
-      {/* Floating Action Buttons */}
+ 
       
 
       {/* Animated Background Elements */}
@@ -100,13 +100,7 @@ const BlogDetailPage = () => {
         <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-6000"></div>
       </div>
 
-      {/* <Breadcrumb
-        title="Blog Detail"
-        items={[
-          { name: "Blogs", path: "/blog" },
-          { name: blog?.title, path: `/blog-details/${blog?.slug}` },
-        ]}
-      /> */}
+     
 
       <div className="relative container mx-auto px-4 py-8 lg:py-16 mt-6">
         <div className="max-w-7xl mx-auto">
@@ -286,8 +280,8 @@ const BlogDetailPage = () => {
                   <div className="mt-16 pt-10 border-t-2 border-dashed border-neutral-200">
                     <div className="flex items-center gap-6 bg-gradient-to-r from-primary-btn/5 to-orange-500/5 rounded-3xl p-6">
                       <div className="relative flex-shrink-0">
-                        <div className="absolute -inset-2 bg-gradient-to-r from-primary-btn to-orange-500 rounded-full blur-lg opacity-50 animate-pulse"></div>
-                        <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-primary-btn to-orange-500 flex items-center justify-center text-white text-3xl font-black shadow-xl border-4 border-white">
+                        <div className="absolute -inset-2 bg-gradient-to-r from-primary-btn to-red-500 rounded-full blur-lg opacity-50 animate-pulse"></div>
+                        <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-primary-btn to-red-500 flex items-center justify-center text-white text-3xl font-black shadow-xl border-4 border-white">
                           A
                         </div>
                       </div>
@@ -448,52 +442,53 @@ const BlogDetailPage = () => {
                 </div>
 
                 {/* Newsletter - Ultra Premium */}
-                <div className="relative overflow-hidden rounded-[2rem] shadow-2xl">
-                  {/* Animated Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600"></div>
-                  <div className="absolute inset-0 opacity-30">
-                    <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')]"></div>
-                  </div>
-                  
-                  <div className="relative p-8 text-white">
-                    {/* Icon */}
-                    <div className="relative mb-6 inline-block">
-                      <div className="absolute -inset-2 bg-white/20 rounded-3xl blur-lg animate-pulse"></div>
-                      <div className="relative w-20 h-20 rounded-3xl bg-white/20 backdrop-blur-sm flex items-center justify-center transform -rotate-6 shadow-2xl border border-white/30">
-                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
-                        </svg>
-                      </div>
-                    </div>
-                    
-                    <h3 className="text-3xl font-black mb-3 leading-tight">
-                      Stay in the Loop!
-                    </h3>
-                    <p className="text-white/90 text-sm mb-8 leading-relaxed">
-                      Join 10,000+ readers getting fresh insights delivered straight to their inbox every week.
-                    </p>
-                    
-                    <div className="space-y-4">
-                      <input
-                        type="email"
-                        placeholder="Enter your email address"
-                        className="w-full px-6 py-4 rounded-2xl text-neutral-900 placeholder-neutral-500 focus:outline-none focus:ring-4 focus:ring-white/50 transition-all font-medium shadow-xl"
-                      />
-                      <button className="w-full group px-6 py-4 bg-white text-neutral-900 font-black rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl relative overflow-hidden">
-                        <span className="relative z-10 flex items-center justify-center gap-2">
-                          Subscribe Now
-                          <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                          </svg>
-                        </span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary-btn to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
-                      </button>
-                      <p className="text-xs text-white/70 text-center">
-                        🔒 We respect your privacy. Unsubscribe anytime.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                {/* Newsletter - Ultra Premium */}
+<div className="relative overflow-hidden rounded-[2rem] shadow-2xl">
+  {/* Animated Background - Changed to black/dark gradient */}
+  <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-800 to-black"></div>
+  <div className="absolute inset-0 opacity-30">
+    <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMC41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')]"></div>
+  </div>
+  
+  <div className="relative p-8 text-white">
+    {/* Icon */}
+    <div className="relative mb-6 inline-block">
+      <div className="absolute -inset-2 bg-white/20 rounded-3xl blur-lg animate-pulse"></div>
+      <div className="relative w-20 h-20 rounded-3xl bg-white/20 backdrop-blur-sm flex items-center justify-center transform -rotate-6 shadow-2xl border border-white/30">
+        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+        </svg>
+      </div>
+    </div>
+    
+    <h3 className="text-3xl font-black mb-3 leading-tight">
+      Stay in the Loop!
+    </h3>
+    <p className="text-white/90 text-sm mb-8 leading-relaxed">
+      Join 10,000+ readers getting fresh insights delivered straight to their inbox every week.
+    </p>
+    
+    <div className="space-y-4">
+     <input
+  type="email"
+  placeholder="Enter your email address"
+  className="w-full px-6 py-4 rounded-2xl bg-white text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-4 focus:ring-white/50 transition-all font-medium shadow-xl"
+/>
+      <button className="w-full group px-6 py-4 bg-white text-neutral-900 font-black rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl relative overflow-hidden">
+        <span className="relative z-10 flex items-center justify-center gap-2">
+          Subscribe Now
+          <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </span>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-btn to-orange-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+      </button>
+      <p className="text-xs text-white/70 text-center">
+        🔒 We respect your privacy. Unsubscribe anytime.
+      </p>
+    </div>
+  </div>
+</div>
               </div>
             </div>
           </div>

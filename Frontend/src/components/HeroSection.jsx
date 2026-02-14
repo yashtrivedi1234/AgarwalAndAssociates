@@ -22,14 +22,14 @@ export default function EnhancedAntraHero() {
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80',
+      image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80',
       tagline: 'FAST AND RELIABLE',
       heading: 'The Art of Stunning Interior Design',
       paragraph: "Whether it's your home, office, or a commercial project, we are always dedicated to bringing your vision to life."
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1920&q=80',
+      image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80',
       tagline: 'FAST AND RELIABLE',
       heading: 'Modern Living Spaces That Inspire',
       paragraph: "Whether it's your home, office, or a commercial project, we are always dedicated to bringing your vision to life."

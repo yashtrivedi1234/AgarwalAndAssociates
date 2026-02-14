@@ -9,7 +9,7 @@ export default function AboutSection2() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left side - Main text */}
           <div className="lg:col-span-7">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight mb-12">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-12">
               We are transforming spaces through architectural innovation.
             </h2>
             

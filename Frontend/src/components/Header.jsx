@@ -8,6 +8,8 @@ import logo from '../assets/logo-removebg.png'
 export default function Header() {
   const isHomePage = useIsHomePage();
   const hasBreadcrumb = useHasBreadcrumb();
+  const location = window.location.pathname;
+  const isBlogDetail = /^\/blog-detail\/.+/.test(location) || /^\/blog-details\/.+/.test(location);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -99,9 +101,11 @@ export default function Header() {
     <header
       ref={headerRef}
       className={`fixed w-full z-[9999] transition-all duration-300 ${
-        isScrolled
+        isBlogDetail
           ? 'bg-white shadow-md pt-1 text-black'
-          : `lg:bg-transparent bg-white pt-1 ${(isHomePage || hasBreadcrumb) ? 'text-white' : 'text-black'}`
+          : isScrolled
+            ? 'bg-white shadow-md pt-1 text-black'
+            : `lg:bg-transparent bg-white pt-1 ${(isHomePage || hasBreadcrumb) ? 'text-white' : 'text-black'}`
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
@@ -114,7 +118,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className={`hidden lg:flex items-center text-lg font-medium lg:ml-10 ${isScrolled ? 'text-black' : (isHomePage || hasBreadcrumb) ? 'text-white' : 'text-black'}` }>
+          <nav className={`hidden lg:flex items-center text-lg font-medium lg:ml-10 ${isBlogDetail ? 'text-black' : isScrolled ? 'text-black' : (isHomePage || hasBreadcrumb) ? 'text-white' : 'text-black'}` }>
             <ul className="flex space-x-6">
               {navItems.map((item, index) => (
                 <li key={index} className="relative group">
