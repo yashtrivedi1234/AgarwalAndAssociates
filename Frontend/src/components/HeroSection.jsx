@@ -10,9 +10,9 @@ export default function EnhancedAntraHero() {
 
   const slideData = {
     image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80',
-    tagline: 'FAST AND RELIABLE',
-    heading: 'Modern Living Spaces That Inspire',
-    paragraph: "Whether it's your home, office, or a commercial project, we are always dedicated to bringing your vision to life."
+    tagline: 'AGARWAL & ASSOCIATES',
+    heading: 'Crafting Architectural Excellence',
+    paragraph: "We transform visions into iconic structures, blending aesthetic brilliance with functional design to create spaces that inspire."
   };
 
   // GSAP Animation on page load
@@ -122,7 +122,7 @@ export default function EnhancedAntraHero() {
               {/* Heading with GSAP animation */}
               <h1 
                 ref={headingRef}
-                className="text-white text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6"
+                className="text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
               >
                 {slideData.heading}
               </h1>
@@ -135,19 +135,24 @@ export default function EnhancedAntraHero() {
                 {slideData.paragraph}
               </p>
 
-              {/* CTA Button */}
-              <div 
-                ref={buttonRef}
-                className="flex items-center gap-6"
-              >
-                <motion.button 
-                  whileHover={{ scale: 1.05, x: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group flex items-center gap-3 px-6 py-3 border-2 border-white/60 rounded-full text-white font-semibold hover:bg-white hover:text-black transition-all duration-300"
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-4" ref={buttonRef}>
+                <a
+                  href="/projects"
+              
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 bg-gradient-to-r from-red-600 to-red-800 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
                 >
-                  Take Counsel
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
+                  Our Projects <ArrowRight className="inline ml-2 w-5 h-5" />
+                </a>
+                <a
+                  href="/services"
+
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 bg-white text-red-700 font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border-2 border-red-600"
+                >
+                  Our Services <ArrowRight className="inline ml-2 w-5 h-5" />
+                </a>
               </div>
             </div>
           </div>
@@ -172,7 +177,7 @@ export default function EnhancedAntraHero() {
             }
           }}
         >
-          <ChevronDown className="w-6 h-6 text-amber-500" />
+          <ChevronDown className="w-6 h-6 text-red-500" />
         </motion.div>
       </motion.div>
     </div>

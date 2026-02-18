@@ -240,7 +240,7 @@ export default function GoogleMapEmbed() {
         {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Customer Reviews
+            Customer <span className="text-red-600">Reviews</span>
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-red-500 to-red-600 mx-auto mb-6"></div>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">

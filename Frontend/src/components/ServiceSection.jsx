@@ -83,11 +83,10 @@ export default function ServicesList() {
           <h2 className="text-5xl xl:text-6xl font-bold mb-6 leading-tight">
             Explore Our <span className="text-[#FF0000]">Comprehensive</span>
             <br />
-            <span className="text-[#FF0000]">Interior Design</span> Services
+            <span className="text-[#FF0000]">Architectural</span> Services
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl">
-            We specialize in transforming visions into reality. Explore our portfolio of innovative architectural
-            and interior design projects crafted with precision.
+            We specialize in shaping skylines and creating iconic spaces. Discover our portfolio of innovative architectural projects designed with expertise and vision.
           </p>
         </motion.div>
       </div>

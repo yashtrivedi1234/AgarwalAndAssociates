@@ -198,17 +198,17 @@ export default function GoogleMapEmbed() {
           {/* Header Section */}
           <div className="text-center mb-16 animate-fade-in">
             <div className="inline-block mb-4">
-              <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-semibold">
+              <span className="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold">
                 ⭐ Trusted by Thousands
               </span>
             </div>
             <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
-              Customer <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Reviews</span>
+              Customer <span className="bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">Reviews</span>
             </h1>
             <div className="flex items-center justify-center gap-2 mb-6">
-              <div className="w-16 h-1 bg-gradient-to-r from-transparent to-blue-500 rounded"></div>
-              <div className="w-8 h-1 bg-blue-600 rounded"></div>
-              <div className="w-16 h-1 bg-gradient-to-l from-transparent to-indigo-500 rounded"></div>
+              <div className="w-16 h-1 bg-gradient-to-r from-transparent to-red-500 rounded"></div>
+              <div className="w-8 h-1 bg-red-600 rounded"></div>
+              <div className="w-16 h-1 bg-gradient-to-l from-transparent to-red-800 rounded"></div>
             </div>
             <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto font-light">
               Discover authentic experiences from our valued customers
@@ -216,7 +216,7 @@ export default function GoogleMapEmbed() {
           </div>
 
           {/* Reviews Embed Container */}
-          <div className="relative w-full pb-[55%] md:pb-[40%] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-200 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.2)] hover:scale-[1.01] transition-all duration-500">
+          <div className="relative w-full pb-[55%] md:pb-[40%] rounded-3xl overflow-hidden shadow-2xl bg-gradient-to-br from-red-50 to-white border-2 border-red-200 hover:shadow-[0_20px_60px_-15px_rgba(255,0,0,0.2)] hover:scale-[1.01] transition-all duration-500">
             <iframe 
               src="https://widget.tagembed.com/316966?website=1" 
               allow="fullscreen"
@@ -226,39 +226,39 @@ export default function GoogleMapEmbed() {
             />
             
             {/* Decorative Corner Accent */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-bl-full pointer-events-none"></div>
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-indigo-400/10 to-transparent rounded-tr-full pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-400/10 to-transparent rounded-bl-full pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-red-800/10 to-transparent rounded-tr-full pointer-events-none"></div>
           </div>
 
           {/* Stats Section */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-16 max-w-4xl mx-auto">
-            <div className="group text-center p-6 md:p-8 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-blue-100 hover:border-blue-300 hover:-translate-y-1">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div className="group text-center p-6 md:p-8 bg-gradient-to-br from-red-50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-red-100 hover:border-red-300 hover:-translate-y-1">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
               </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">500+</div>
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent mb-2">500+</div>
               <div className="text-base md:text-lg text-gray-700 font-medium">Happy Customers</div>
             </div>
 
-            <div className="group text-center p-6 md:p-8 bg-gradient-to-br from-amber-50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-amber-100 hover:border-amber-300 hover:-translate-y-1">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div className="group text-center p-6 md:p-8 bg-gradient-to-br from-red-50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-red-100 hover:border-red-300 hover:-translate-y-1">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent mb-2">4.9</div>
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent mb-2">4.9</div>
               <div className="text-base md:text-lg text-gray-700 font-medium">Average Rating</div>
             </div>
 
-            <div className="group text-center p-6 md:p-8 bg-gradient-to-br from-green-50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-green-100 hover:border-green-300 hover:-translate-y-1">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <div className="group text-center p-6 md:p-8 bg-gradient-to-br from-red-50 to-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-red-100 hover:border-red-300 hover:-translate-y-1">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-red-500 to-red-800 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">98%</div>
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent mb-2">98%</div>
               <div className="text-base md:text-lg text-gray-700 font-medium">Satisfaction</div>
             </div>
           </div>

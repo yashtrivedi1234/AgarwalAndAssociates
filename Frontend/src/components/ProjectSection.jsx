@@ -47,7 +47,7 @@ useEffect(()=>{
 
   return (
     <section className="py-8 lg:py-12 md:py-10">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 ">
         {/* Section Header with Diagonal Line - UNCHANGED */}
         <div className="relative mb-10">
           <div className="flex items-center justify-center">
