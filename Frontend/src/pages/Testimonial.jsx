@@ -193,10 +193,10 @@ export default function GoogleMapEmbed() {
         title="Client Testimonials" 
         items={[{ name: "Home", path: "/" }, { name: "Testimonials", path: "/testimonials" }]} 
       />
-      <div className="w-full min-h-screen bg-white pt-24 md:pt-32 pb-16 px-4">
+      <div className="w-full min-h-screen bg-white pt-10 pb-16 px-4">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="text-center mb-16 animate-fade-in">
+          <div className="text-center mb-8 animate-fade-in">
             <div className="inline-block mb-4">
               <span className="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold">
                 ⭐ Trusted by Thousands
