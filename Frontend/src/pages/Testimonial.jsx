@@ -197,15 +197,15 @@ export default function GoogleMapEmbed() {
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
           <div className="text-center mb-8 animate-fade-in">
-            <div className="inline-block mb-4">
+            <div className="inline-block">
               <span className="bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-semibold">
                 ⭐ Trusted by Thousands
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900  leading-tight">
               Customer <span className="bg-gradient-to-r from-red-600 to-red-800 bg-clip-text text-transparent">Reviews</span>
             </h1>
-            <div className="flex items-center justify-center gap-2 mb-6">
+            <div className="flex items-center justify-center gap-2 ">
               <div className="w-16 h-1 bg-gradient-to-r from-transparent to-red-500 rounded"></div>
               <div className="w-8 h-1 bg-red-600 rounded"></div>
               <div className="w-16 h-1 bg-gradient-to-l from-transparent to-red-800 rounded"></div>
