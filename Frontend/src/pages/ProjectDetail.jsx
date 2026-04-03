@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { MapPin, Calendar, ChevronLeft, ArrowRight, Eye, Download, Share2, ChevronRight } from 'lucide-react';
+import { MapPin, Calendar, ChevronLeft, ArrowRight, Eye, ChevronRight } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import InquiryModal from '../components/InquiryModal';
 import { fetchProjectData } from '../redux/dataSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,7 +8,6 @@ export default function ProjectDetail() {
   const { slug } = useParams();
   const [project, setProject] = useState(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
   const [prevProject, setPrevProject] = useState(null);
   const [nextProject, setNextProject] = useState(null);
   const dispatch = useDispatch();
@@ -124,8 +122,6 @@ export default function ProjectDetail() {
 
   return (
     <>
-      <InquiryModal isOpen={modalOpen} closeModal={() => setModalOpen(false)} />
-
       <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
 
@@ -149,17 +145,19 @@ export default function ProjectDetail() {
               <p className="mb-10 text-lg leading-relaxed text-gray-300">{project.description}</p>
 
               <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={() => setModalOpen(true)}
+                <Link
+                  to="/contact"
                   className="flex items-center gap-3 rounded-lg bg-red-600 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/50"
                 >
                   Request Quote
                   <ArrowRight className="h-5 w-5" />
-                </button>
-                <button className="flex items-center gap-3 rounded-lg border-2 border-white/20 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:border-white hover:bg-white/10">
-                  <Download className="h-5 w-5" />
-                  Download
-                </button>
+                </Link>
+                <Link
+                  to="/services"
+                  className="flex items-center gap-3 rounded-lg border-2 border-white/20 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:border-white hover:bg-white/10"
+                >
+                  Our Services
+                </Link>
               </div>
             </div>
 
@@ -339,17 +337,19 @@ export default function ProjectDetail() {
                 </p>
 
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <button
-                    onClick={() => setModalOpen(true)}
+                  <Link
+                    to="/contact"
                     className="flex items-center gap-3 rounded-xl bg-red-600 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/40"
                   >
                     Start Your Project
                     <ArrowRight className="h-5 w-5" />
-                  </button>
-                  <button className="flex items-center gap-3 rounded-xl border border-white/20 bg-white/5 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10">
-                    <Share2 className="h-5 w-5" />
-                    Share Project
-                  </button>
+                  </Link>
+                  <Link
+                    to="/projects"
+                    className="flex items-center gap-3 rounded-xl border border-white/20 bg-white/5 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10"
+                  >
+                    View All Projects
+                  </Link>
                 </div>
               </div>
 

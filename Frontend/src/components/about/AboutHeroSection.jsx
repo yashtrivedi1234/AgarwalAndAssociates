@@ -49,9 +49,12 @@ export default function AboutHeroSection() {
                 <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </span>
             </Link>
-            <button className="px-8 py-4 bg-white text-neutral-900 font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border-2 border-neutral-200">
+            <Link
+              to="/contact"
+              className="px-8 py-4 bg-white text-neutral-900 font-bold rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border-2 border-neutral-200"
+            >
               Contact Us
-            </button>
+            </Link>
           </div>
         </div>
 
