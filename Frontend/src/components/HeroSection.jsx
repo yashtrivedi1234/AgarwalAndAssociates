@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { gsap } from 'gsap';
-import heroVideo from '../assets/hero/v1.mp4';
+import heroVideo from '../assets/hero/v3.mp4';
 // import heroVideo from '../assets/hero/v2.mp4';
 
 export default function EnhancedAntraHero() {

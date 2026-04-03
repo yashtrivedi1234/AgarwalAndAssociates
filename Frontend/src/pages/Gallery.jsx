@@ -123,7 +123,7 @@ if(type){
               </div>
             </div>
           ))}
-          <video controls className='h-64 aspect-video' src='https://res.cloudinary.com/diz0v7rws/video/upload/v1756900990/bky4belmi7xaje6qgjdb.mp4'></video>
+          {/* <video controls className='h-64 aspect-video' src='https://res.cloudinary.com/diz0v7rws/video/upload/v1756900990/bky4belmi7xaje6qgjdb.mp4'></video> */}
         </div>
 
         {/* Modal */}
