@@ -4,8 +4,15 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 
+const getBasename = () => {
+  if (typeof window === 'undefined') return '/'
+  return window.location.pathname.startsWith('/admin') ? '/admin' : '/'
+}
+
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename='/admin/'> 
-  <App />
-</BrowserRouter>
+  <StrictMode>
+    <BrowserRouter basename={getBasename()}>
+      <App />
+    </BrowserRouter>
+  </StrictMode>
 )
