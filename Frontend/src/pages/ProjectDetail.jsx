@@ -257,7 +257,7 @@ export default function ProjectDetail() {
         </div>
 
         {projectDetails.otherImages.length > 1 && (
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-5">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
             {projectDetails.otherImages.map((image, index) => (
               <button
                 key={index}
@@ -319,7 +319,7 @@ export default function ProjectDetail() {
         .animate-slide-in-right { animation: slide-in-right 0.6s ease-out; }
       `}</style>
 
-      <div className="relative overflow-hidden bg-[linear-gradient(135deg,_#0f172a_0%,_#111827_45%,_#7f1d1d_100%)] py-24">
+      <div className="relative overflow-hidden bg-[linear-gradient(135deg,_#0f172a_0%,_#111827_45%,_#7f1d1d_100%)] py-16 lg:py-20">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute -left-12 top-10 h-40 w-40 rounded-full bg-red-500 blur-3xl"></div>
           <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-white/10 blur-3xl"></div>
@@ -328,47 +328,47 @@ export default function ProjectDetail() {
 
         <div className="relative mx-auto max-w-6xl px-6">
           <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-sm">
-            <div className="grid gap-10 px-8 py-12 lg:grid-cols-[1.4fr_0.8fr] lg:px-12 lg:py-14">
+            <div className="grid gap-8 px-6 py-8 lg:grid-cols-[1.4fr_0.8fr] lg:px-10 lg:py-10">
               <div>
                 <p className="text-sm font-bold uppercase tracking-[0.35em] text-red-400">Ready To Build</p>
-                <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-white lg:text-6xl">
+                <h2 className="mt-3 max-w-3xl text-4xl font-black leading-tight text-white lg:text-6xl">
                   Interested in a Similar Project?
                 </h2>
-                <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-300">
+                <p className="mt-4 max-w-2xl text-lg leading-relaxed text-gray-300">
                   Let&apos;s shape a space that reflects your goals, site conditions, and design aspirations with the same attention to detail seen in this project.
                 </p>
 
-                <div className="mt-10 flex flex-wrap gap-4">
+                <div className="mt-7 flex flex-wrap gap-3">
                   <button
                     onClick={() => setModalOpen(true)}
-                    className="flex items-center gap-3 rounded-xl bg-red-600 px-10 py-5 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/40"
+                    className="flex items-center gap-3 rounded-xl bg-red-600 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/40"
                   >
                     Start Your Project
                     <ArrowRight className="h-5 w-5" />
                   </button>
-                  <button className="flex items-center gap-3 rounded-xl border border-white/20 bg-white/5 px-10 py-5 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10">
+                  <button className="flex items-center gap-3 rounded-xl border border-white/20 bg-white/5 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10">
                     <Share2 className="h-5 w-5" />
                     Share Project
                   </button>
                 </div>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                   <p className="text-sm font-bold uppercase tracking-[0.25em] text-red-400">Consultation</p>
-                  <p className="mt-3 text-sm leading-relaxed text-gray-300">
+                  <p className="mt-2 text-sm leading-relaxed text-gray-300">
                     Discuss your vision, budget, and site requirements with our team.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                   <p className="text-sm font-bold uppercase tracking-[0.25em] text-red-400">Planning</p>
-                  <p className="mt-3 text-sm leading-relaxed text-gray-300">
+                  <p className="mt-2 text-sm leading-relaxed text-gray-300">
                     Get a thoughtful direction for design, execution, and timelines.
                   </p>
                 </div>
-                <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                   <p className="text-sm font-bold uppercase tracking-[0.25em] text-red-400">Execution</p>
-                  <p className="mt-3 text-sm leading-relaxed text-gray-300">
+                  <p className="mt-2 text-sm leading-relaxed text-gray-300">
                     Move forward with a team focused on quality, detail, and delivery.
                   </p>
                 </div>

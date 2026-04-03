@@ -204,7 +204,7 @@ const Footer = () => {
                 <div className="flex items-center space-x-3">
                   <Mail size={18} className="self-center"/>
                   <div className="flex flex-col">
-                    <a aria-label="gmail" href="mailto:rajnish@architectrajnish.in" target="_blank">rajnish@architectrajnish.in</a>
+                    <a aria-label="gmail" href="mailto:rajnish@architectrajnish.in" target="_blank">rajnish@architectrajnish.in , </a>
                     <a aria-label="gmail" href="mailto:info@architectrajnish.in" target="_blank">info@architectrajnish.in</a>
                   </div>
                 </div>

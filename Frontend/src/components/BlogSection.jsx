@@ -53,8 +53,8 @@ export default function BlogPage() {
     );
   }
   return (
-    <div className="bg-gray-100">
-      <div className="container mx-auto sm:px-6 lg:px-6 lg:py-12 py-8 md:py-10">
+    <section className="bg-gray-100 py-10 lg:py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-black sm:text-4xl mb-2">
             Recent Articles
@@ -123,6 +123,6 @@ export default function BlogPage() {
           ))}
         </Slider>
       </div>
-    </div>
+    </section>
   );
 }

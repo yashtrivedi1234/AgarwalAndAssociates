@@ -152,7 +152,7 @@ console.log(response)
 
   return (
     <div>
-      <div className="fixed -right-20 top-1/2 transform -translate-y-1/2 z-50 rotate-90">
+      <div className="fixed -right-20 top-1/2 z-[10000] -translate-y-1/2 rotate-90 transform">
         <button
           onClick={() => setIsModalOpen(true)}
           className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white
@@ -166,7 +166,7 @@ console.log(response)
       {isModalOpen && (
         <div
           onClick={() => setIsModalOpen(false)}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
         >
           <div
             onClick={(e) => e.stopPropagation()}

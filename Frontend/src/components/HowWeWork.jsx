@@ -56,8 +56,8 @@ export default function HowWeWork() {
   const memoizedSteps = useMemo(() => steps, []);
 
   return (
-    <div
-      className="text-center py-16 px-5 bg-black z-10 text-white"
+    <section
+      className="z-10 bg-black py-10 text-center text-white lg:py-12"
       data-aos="fade-up"
     >
       <div
@@ -70,7 +70,7 @@ export default function HowWeWork() {
           zIndex: -1,
         }}
       ></div>
-      <div className="px-4 container mx-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <p className="lg:text-4xl text-3xl text-primary font-medium flex items-center justify-center gap-2">
           {/* <span className="h-[2px] w-7 bg-primary"></span>  */}
           How We Work{" "}
@@ -80,11 +80,11 @@ export default function HowWeWork() {
           Take a tour of our work process
         </h2>
       </div>
-      <div className="grid lg:grid-cols-4 grid-cols-2 gap-6 container mx-auto">
+      <div className="container mx-auto grid grid-cols-2 gap-6 px-4 sm:px-6 lg:grid-cols-4 lg:px-8">
         {memoizedSteps.map(({ id, title, icon, description }, index) => (
           <Step key={id} id={id} title={title} Icon={icon} index={index} description={description} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }

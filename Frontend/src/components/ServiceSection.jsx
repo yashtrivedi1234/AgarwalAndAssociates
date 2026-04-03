@@ -70,9 +70,9 @@ export default function ServicesList() {
   ];
 
   return (
-    <section className="bg-[#FAFAFA] py-24 scroll-m-20 overflow-x-hidden" id="services">
+    <section className="scroll-m-20 overflow-x-hidden bg-[#FAFAFA] py-10 lg:py-12" id="services">
       {/* Heading and Description Centered */}
-      <div className="max-w-full mx-auto px-8 mb-16">
+      <div className="mx-auto mb-8 max-w-full px-4 sm:px-6 lg:px-8">
         <motion.div
           className="flex flex-col items-center text-center"
           initial={{ x: 200, opacity: 0 }}
@@ -80,7 +80,7 @@ export default function ServicesList() {
           transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, amount: 0.5 }}
         >
-          <h2 className="text-5xl xl:text-6xl font-bold mb-6 leading-tight">
+          <h2 className="text-5xl xl:text-6xl font-bold leading-tight">
             Explore Our <span className="text-[#FF0000]">Comprehensive</span>
             <br />
             <span className="text-[#FF0000]">Architectural</span> Services
@@ -92,7 +92,7 @@ export default function ServicesList() {
       </div>
 
       {/* Services Section */}
-      <div className="max-w-[1400px] mx-auto px-8 mb-24">
+      <div className="mx-auto mb-8 max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="flex gap-12 items-start">
           {/* Left Side - Image Section with animation */}
           <motion.div

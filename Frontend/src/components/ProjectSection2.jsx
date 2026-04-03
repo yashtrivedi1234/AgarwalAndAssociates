@@ -39,9 +39,9 @@ useEffect(()=>{
 
 
   return (
-    <div className="relative h-screen my-16 overflow-y-scroll bg-white" id="projects">
+    <section className="relative my-10 h-screen overflow-y-scroll bg-white lg:my-12" id="projects">
       {/* Project List */}
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl md:text-4xl font-bold lg:mb-12 mb-6 text-center">Featured Projects</h2>
         <div className="space-y-10 max-w-4xl mx-auto">
           {projectData.map((project) => (
@@ -81,6 +81,6 @@ useEffect(()=>{
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

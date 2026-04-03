@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import user from "../assets/about/rajneesh.jpg"
 function DirectorSection() {
   return (
-    <div className="container mx-auto lg:px-6 px-4 lg:py-0 py-8">
+    <section className="py-10 lg:py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div
         className={` transition-all duration-1000 delay-600 transform opacity-100 translate-y-0`}
       >
@@ -71,7 +72,8 @@ function DirectorSection() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </section>
   );
 }
 

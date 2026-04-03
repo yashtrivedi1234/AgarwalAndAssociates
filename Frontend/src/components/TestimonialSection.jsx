@@ -234,8 +234,8 @@
 
 export default function GoogleMapEmbed() {
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-12 px-4">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-10 lg:py-12">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
         <div className="text-center mb-12">
@@ -259,6 +259,6 @@ export default function GoogleMapEmbed() {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
-} 
+}

@@ -100,7 +100,7 @@ export default function AboutUsPage() {
                 </div>
 
                 {/* Mega Title */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] messiri">
+                <h1 className="text-1xl sm:text-2xl lg:text-3xl xl:text-4xl font-black leading-[1.1] messiri">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 via-red-600 to-orange-600 animate-gradient">
                     A Legacy of Architectural Excellence
                   </span>

@@ -37,11 +37,11 @@ const clients = [
 
 const Clients = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden relative">
+    <section className="relative overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black py-10 lg:py-12">
       {/* Subtle background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800/20 via-transparent to-transparent"></div>
       
-      <div className="max-w-6xl mx-auto px-4 mb-16 relative z-10">
+      <div className="relative z-10 mx-auto mb-12 max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center space-y-3">
           <p className="text-gray-400 text-sm font-medium tracking-wider uppercase">
             Trusted By Industry Leaders

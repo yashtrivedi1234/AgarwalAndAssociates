@@ -38,8 +38,8 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <div className="bg-black text-white py-12">
-      <div className="max-w-6xl mx-auto px-4 md:px-6">
+    <section className="bg-black py-10 text-white lg:py-12">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Header with subtle animation */}
         <div className="mb-10 text-center">
           <div className="inline-block relative">
@@ -100,6 +100,6 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
