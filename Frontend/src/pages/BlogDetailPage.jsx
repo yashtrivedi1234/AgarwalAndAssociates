@@ -117,7 +117,7 @@ const BlogDetailPage = () => {
           <div className="mb-10 sm:mb-16 lg:mb-24">
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
               <div className="order-2 space-y-6 sm:space-y-8 lg:order-1">
-                <h1 className="messiri text-2xl font-black leading-tight sm:text-3xl lg:text-4xl xl:text-5xl">
+                <h1 className="messiri text-1xl font-black leading-tight sm:text-2xl lg:text-3xl xl:text-4xl">
                   <span className="animate-gradient bg-gradient-to-r from-neutral-900 via-primary-btn to-orange-600 bg-clip-text text-transparent">
                     {blog.title}
                   </span>
