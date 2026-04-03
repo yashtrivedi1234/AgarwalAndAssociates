@@ -36,7 +36,7 @@ function Home() {
       </Suspense>
 
       <Suspense fallback={<Spinner />}>
-        <VastuSection />
+        {/* <VastuSection /> */}
       </Suspense>
 
       <Suspense fallback={<Spinner />}>

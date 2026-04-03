@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useIsHomePage } from "../hooks/useIsHomePage";
 import { useHasBreadcrumb } from "../hooks/useHasBreadcrumb";
-import { Menu, X, ChevronDown, Building2, Phone, ListFilter } from "lucide-react";
+import { X, ChevronDown, Phone, ListFilter } from "lucide-react";
 import logo from '../assets/logo-removebg.png'
 
 export default function Header() {
   const isHomePage = useIsHomePage();
   const hasBreadcrumb = useHasBreadcrumb();
-  const location = window.location.pathname;
-  const isBlogDetail = /^\/blog-detail\/.+/.test(location) || /^\/blog-details\/.+/.test(location);
+  const location = useLocation();
+  const pathname = location.pathname;
+  const isBlogDetail = /^\/blog-detail\/.+/.test(pathname) || /^\/blog-details\/.+/.test(pathname);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -40,6 +41,11 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+    setOpenDropdown(null);
+  }, [pathname]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -53,7 +59,7 @@ export default function Header() {
     { 
       name: "About Us", 
       path: "/about",
-      id: 'about',
+      id: "about",
       isDropdown: true,
       dropdownItems: [
         { name: "About Agarwal & associates", path: "/about" },
@@ -62,7 +68,8 @@ export default function Header() {
       ],
     },
     { name: "Projects", path: "/projects",
-       isDropdown: true,
+      id: "projects",
+      isDropdown: true,
       dropdownItems: [
   { name: "All Projects", path: "/projects" },
   { name: "Residential", path: "/projects?type=Residential" },
@@ -85,7 +92,7 @@ export default function Header() {
       ],
     },
     { name: "Gallery", path: "/gallery" ,
-      id: 'gallery',
+      id: "gallery",
        isDropdown: true,
       dropdownItems: [
   { name: "Photo Gallery", path: "/gallery?type=photo" },
@@ -121,25 +128,28 @@ export default function Header() {
           <nav className={`hidden lg:flex items-center text-lg font-medium lg:ml-10 ${isBlogDetail ? 'text-black' : isScrolled ? 'text-black' : (isHomePage || hasBreadcrumb) ? 'text-white' : 'text-black'}` }>
             <ul className="flex space-x-6">
               {navItems.map((item, index) => (
-                <li key={index} className="relative group">
+                <li
+                  key={index}
+                  className="relative group"
+                  onMouseLeave={() => setOpenDropdown(null)}
+                >
                   {item.isDropdown ? (
                     <div>
                       <button
                         aria-label="dropdown"
                         className="flex items-center transition-colors"
                         onClick={() => toggleDropdown(item.id)}
-                        onMouseEnter={() => toggleDropdown(item.id)}
+                        onMouseEnter={() => setOpenDropdown(item.id)}
                       >
                         {item.name}
                         <ChevronDown size={16} className="ml-1" />
                       </button>
                       <div
-                        className={`absolute top-full left-0 mt-2 text-black bg-white shadow-lg py-2 w-56 transform transition-all origin-top ${
+                        className={`absolute top-full left-0 text-black bg-white shadow-lg py-2 w-56 transform transition-all origin-top ${
                           openDropdown === item.id
-                            ? "scale-y-100 opacity-100"
-                            : "scale-y-0 opacity-0"
+                            ? "scale-y-100 opacity-100 pointer-events-auto"
+                            : "scale-y-0 opacity-0 pointer-events-none"
                         }`}
-                        onMouseLeave={() => toggleDropdown(null)}
                       >
                         {item.dropdownItems.map((dropdownItem, idx) => (
                           <Link

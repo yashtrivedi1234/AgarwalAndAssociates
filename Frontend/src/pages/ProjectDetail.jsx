@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { MapPin, Calendar, ChevronLeft, ArrowRight, Eye, Award, Users, Target, Lightbulb, TrendingUp, Download, Share2, ExternalLink, Clock, Ruler } from 'lucide-react';
+import { MapPin, Calendar, ChevronLeft, ArrowRight, Eye, Download, Share2, ChevronRight } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
-import projectData from '../Data/ProjectData';
 import InquiryModal from '../components/InquiryModal';
 import { fetchProjectData } from '../redux/dataSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,9 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function ProjectDetail() {
   const { slug } = useParams();
   const [project, setProject] = useState(null);
-  const [relatedProjects, setRelatedProjects] = useState([]);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [prevProject, setPrevProject] = useState(null);
+  const [nextProject, setNextProject] = useState(null);
   const dispatch = useDispatch();
   const { projectData, error, status } = useSelector((state) => state.data);
 
@@ -20,276 +20,236 @@ export default function ProjectDetail() {
   }, [dispatch]);
 
   useEffect(() => {
-    const currentProject = projectData.find(project => project.slug === slug);
+    if (!projectData.length) {
+      setProject(null);
+      setPrevProject(null);
+      setNextProject(null);
+      return;
+    }
+
+    const currentIndex = projectData.findIndex((p) => p.slug === slug);
+    const currentProject = projectData[currentIndex];
     setProject(currentProject);
     setActiveImageIndex(0);
-    
+
     if (currentProject) {
-      const otherProjects = projectData
-        .filter(item => item.id !== currentProject.id && item.category === currentProject.category)
-        .slice(0, 3);
-        
-      if (otherProjects.length < 3) {
-        const moreProjects = projectData
-          .filter(item => item.id !== currentProject.id && item.category !== currentProject.category)
-          .slice(0, 3 - otherProjects.length);
-          
-        setRelatedProjects([...otherProjects, ...moreProjects]);
-      } else {
-        setRelatedProjects(otherProjects);
-      }
+      setPrevProject(currentIndex > 0 ? projectData[currentIndex - 1] : null);
+      setNextProject(currentIndex < projectData.length - 1 ? projectData[currentIndex + 1] : null);
+    } else {
+      setPrevProject(null);
+      setNextProject(null);
     }
   }, [slug, projectData]);
 
-  if (!project) {
+  if (status === 'loading' && !project) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
         <div className="relative">
-          <div className="w-20 h-20 border-4 border-gray-200 border-t-red-600 rounded-full animate-spin"></div>
+          <div className="h-20 w-20 animate-spin rounded-full border-4 border-gray-200 border-t-red-600"></div>
         </div>
         <p className="mt-6 text-xl font-semibold text-gray-700">Loading Project...</p>
       </div>
     );
   }
 
+  if (status === 'failed' || error) {
+    return (
+      <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-6 text-center">
+        <h1 className="text-3xl font-black text-gray-900">Unable to load this project</h1>
+        <p className="mt-4 max-w-xl text-gray-600">
+          There was a problem fetching project details. Please try again in a moment.
+        </p>
+        <Link
+          to="/projects"
+          className="mt-8 inline-flex items-center gap-3 rounded-lg bg-gray-900 px-6 py-3 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:bg-red-600"
+        >
+          <ChevronLeft className="h-5 w-5" />
+          Back to Projects
+        </Link>
+      </div>
+    );
+  }
+
+  if (!project) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-6">
+        <div className="max-w-2xl rounded-3xl border border-gray-200 bg-white p-10 text-center shadow-xl">
+          <p className="mb-3 text-sm font-bold uppercase tracking-[0.35em] text-red-600">Project Not Found</p>
+          <h1 className="text-3xl font-black text-gray-900">This project page does not exist.</h1>
+          <p className="mt-4 text-gray-600">
+            The project may have been removed or the link may be incorrect. You can head back to the main projects page.
+          </p>
+          <Link
+            to="/projects"
+            className="mt-8 inline-flex items-center gap-3 rounded-lg bg-gray-900 px-6 py-3 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:bg-red-600"
+          >
+            <ChevronLeft className="h-5 w-5" />
+            Browse Projects
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
   const projectDetails = project.details || {
     client: 'Confidential Client',
-    size: '25,000 sq ft',
-    duration: '18 months',
-    services: ['Architecture', 'Interior Design', 'Project Management', 'Sustainability Consulting'],
-    challenge: 'Creating a modern space that harmonizes with the environment while meeting stringent sustainability standards and client requirements for flexibility and innovation.',
-    solution: 'Our team developed an integrated approach combining biophilic design principles, cutting-edge sustainable technologies, and modular spatial planning to create a dynamic, adaptable environment.',
-    result: 'Achieved LEED Platinum certification, 40% energy reduction, and exceeded client expectations for both functionality and aesthetic appeal. The project has become a benchmark in sustainable architecture.',
-    team: '15 Professionals',
-    awards: ['Best Sustainable Design 2024', 'Architecture Excellence Award'],
     mainImageUrl: project.mainImageUrl || 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=800&fit=crop',
-    otherImages: project.otherImages && project.otherImages.length > 0 ? project.otherImages : [
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&h=800&fit=crop'
-    ]
+    otherImages: project.otherImages && project.otherImages.length > 0
+      ? project.otherImages
+      : [
+          'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&h=800&fit=crop',
+          'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&h=800&fit=crop',
+          'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=800&fit=crop',
+          'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&h=800&fit=crop',
+          'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200&h=800&fit=crop',
+          'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&h=800&fit=crop',
+          'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&h=800&fit=crop',
+        ],
   };
 
   const formattedDate = (date) =>
-    new Date(date).toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
+    new Date(date).toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric',
     });
 
   const nextImage = () => {
-    setActiveImageIndex((prev) => 
-      prev === projectDetails.otherImages.length - 1 ? 0 : prev + 1
-    );
+    setActiveImageIndex((prev) => (prev === projectDetails.otherImages.length - 1 ? 0 : prev + 1));
   };
 
   const prevImage = () => {
-    setActiveImageIndex((prev) => 
-      prev === 0 ? projectDetails.otherImages.length - 1 : prev - 1
-    );
+    setActiveImageIndex((prev) => (prev === 0 ? projectDetails.otherImages.length - 1 : prev - 1));
   };
 
   return (
     <>
       <InquiryModal isOpen={modalOpen} closeModal={() => setModalOpen(false)} />
 
-   
-
-      {/* Hero Section */}
-      <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+      <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-6 py-16 lg:py-24">
 
-          {/* Back Button */}
-          <Link 
-            to="/projects" 
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 hover:border-red-500 rounded-lg text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:bg-white/5 mt-6 group"
-          >
-            <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            Back to Projects
-          </Link>
-
-          {/* ❌ Category badge + project number removed */}
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
+              <h1 className="mb-6 text-3xl font-black leading-tight lg:text-4xl">{project.title}</h1>
 
-              {/* Title — font size reduced */}
-              <h1 className="text-3xl lg:text-4xl font-black mb-6 leading-tight">
-                {project.title}
-              </h1>
-
-              <div className="flex flex-wrap items-center gap-6 mb-8 text-gray-300">
+              <div className="mb-8 flex flex-wrap items-center gap-6 text-gray-300">
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-red-500" />
+                  <MapPin className="h-5 w-5 text-red-500" />
                   <span className="text-sm font-medium">{project.location}</span>
                 </div>
-                <div className="w-px h-5 bg-gray-600"></div>
+                <div className="h-5 w-px bg-gray-600"></div>
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-red-500" />
+                  <Calendar className="h-5 w-5 text-red-500" />
                   <span className="text-sm font-medium">{formattedDate(project.updatedAt)}</span>
                 </div>
               </div>
 
-              <p className="text-lg text-gray-300 leading-relaxed mb-10">
-                {project.description}
-              </p>
+              <p className="mb-10 text-lg leading-relaxed text-gray-300">{project.description}</p>
 
               <div className="flex flex-wrap gap-4">
-                <button 
+                <button
                   onClick={() => setModalOpen(true)}
-                  className="px-8 py-4 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-wide rounded-lg transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/50 flex items-center gap-3"
+                  className="flex items-center gap-3 rounded-lg bg-red-600 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/50"
                 >
                   Request Quote
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="h-5 w-5" />
                 </button>
-                <button className="px-8 py-4 border-2 border-white/20 hover:border-white hover:bg-white/10 text-white font-bold uppercase tracking-wide rounded-lg transition-all duration-300 flex items-center gap-3">
-                  <Download className="w-5 h-5" />
+                <button className="flex items-center gap-3 rounded-lg border-2 border-white/20 px-8 py-4 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:border-white hover:bg-white/10">
+                  <Download className="h-5 w-5" />
                   Download
                 </button>
               </div>
             </div>
 
             <div className="relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
-                  src={projectDetails.mainImageUrl} 
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+                <img
+                  src={projectDetails.mainImageUrl}
                   alt={project.title}
-                  className="w-full h-[500px] object-cover"
+                  className="h-[500px] w-full object-cover"
                 />
-                <div className="absolute bottom-6 left-6 px-6 py-4 bg-white/95 backdrop-blur-sm rounded-lg shadow-xl">
-                  <p className="text-xs font-bold text-red-600 uppercase tracking-wider mb-1">Client</p>
+                <div className="absolute bottom-6 left-6 rounded-lg bg-white/95 px-6 py-4 shadow-xl backdrop-blur-sm">
+                  <p className="mb-1 text-xs font-bold uppercase tracking-wider text-red-600">Client</p>
                   <p className="text-lg font-bold text-gray-900">{projectDetails.client}</p>
                 </div>
               </div>
-              <div className="absolute -top-4 -right-4 w-32 h-32 bg-red-600/10 rounded-2xl -z-10 animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-red-600/10 rounded-2xl -z-10 animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute -right-4 -top-4 -z-10 h-32 w-32 animate-pulse rounded-2xl bg-red-600/10"></div>
+              <div
+                className="absolute -bottom-4 -left-4 -z-10 h-24 w-24 animate-pulse rounded-2xl bg-red-600/10"
+                style={{ animationDelay: '1s' }}
+              ></div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Stats Bar */}
-      <div className="bg-gray-900 border-t-4 border-red-600">
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 flex items-center justify-center bg-red-600/20 border-2 border-red-600 rounded-lg">
-                <Ruler className="w-6 h-6 text-red-500" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Size</p>
-                <p className="text-xl font-bold text-white">{projectDetails.size}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 flex items-center justify-center bg-red-600/20 border-2 border-red-600 rounded-lg">
-                <Clock className="w-6 h-6 text-red-500" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Duration</p>
-                <p className="text-xl font-bold text-white">{projectDetails.duration}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 flex items-center justify-center bg-red-600/20 border-2 border-red-600 rounded-lg">
-                <Users className="w-6 h-6 text-red-500" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Team</p>
-                <p className="text-xl font-bold text-white">{projectDetails.team}</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 flex items-center justify-center bg-red-600/20 border-2 border-red-600 rounded-lg">
-                <Award className="w-6 h-6 text-red-500" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Awards</p>
-                <p className="text-xl font-bold text-white">{projectDetails.awards?.length || 0}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Image Gallery */}
-      <div className="max-w-7xl mx-auto px-6 py-20">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-4xl lg:text-5xl font-black text-gray-900 animate-fade-in">Visual Journey</h2>
-          <div className="flex items-center gap-4 animate-slide-in-right">
-            <button 
+      <div className="mx-auto max-w-7xl px-6 py-20">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="animate-fade-in text-4xl font-black text-gray-900 lg:text-5xl">Visual Journey</h2>
+          <div className="animate-slide-in-right flex items-center gap-4">
+            <button
               onClick={prevImage}
-              className="w-12 h-12 flex items-center justify-center bg-gray-900 hover:bg-red-600 text-white rounded-lg transition-all duration-300 hover:scale-110 active:scale-95"
+              className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-900 text-white transition-all duration-300 hover:scale-110 hover:bg-red-600 active:scale-95"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="h-5 w-5" />
             </button>
-            <span className="text-lg font-bold text-gray-900 min-w-[80px] text-center">
+            <span className="min-w-[80px] text-center text-lg font-bold text-gray-900">
               {activeImageIndex + 1}/{projectDetails.otherImages.length}
             </span>
-            <button 
+            <button
               onClick={nextImage}
-              className="w-12 h-12 flex items-center justify-center bg-gray-900 hover:bg-red-600 text-white rounded-lg transition-all duration-300 hover:scale-110 active:scale-95"
+              className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-900 text-white transition-all duration-300 hover:scale-110 hover:bg-red-600 active:scale-95"
             >
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="h-5 w-5" />
             </button>
           </div>
         </div>
 
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl mb-6 group">
-          <div className="relative w-full h-[600px]">
+        <div className="group relative mb-6 overflow-hidden rounded-2xl shadow-2xl">
+          <div className="relative h-[600px] w-full">
             {projectDetails.otherImages.map((image, index) => (
-              <img 
+              <img
                 key={index}
                 src={image || projectDetails.mainImageUrl}
                 alt={`Project view ${index + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out ${
-                  index === activeImageIndex 
-                    ? 'opacity-100 scale-100' 
-                    : 'opacity-0 scale-105'
+                className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-in-out ${
+                  index === activeImageIndex ? 'scale-100 opacity-100' : 'scale-105 opacity-0'
                 }`}
               />
             ))}
           </div>
-          
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <div className="absolute bottom-8 left-8 text-white">
-              <p className="text-sm font-semibold uppercase tracking-wider mb-2 opacity-80">Image {activeImageIndex + 1} of {projectDetails.otherImages.length}</p>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-wider opacity-80">
+                Image {activeImageIndex + 1} of {projectDetails.otherImages.length}
+              </p>
               <p className="text-2xl font-bold">{project.title}</p>
             </div>
           </div>
 
-          <button 
+          <button
             onClick={prevImage}
-            className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-white/90 hover:bg-red-600 text-gray-900 hover:text-white rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 shadow-xl"
+            className="absolute left-4 top-1/2 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-gray-900 opacity-0 shadow-xl transition-all duration-300 hover:scale-110 hover:bg-red-600 hover:text-white group-hover:opacity-100"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="h-6 w-6" />
           </button>
-          <button 
+          <button
             onClick={nextImage}
-            className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-white/90 hover:bg-red-600 text-gray-900 hover:text-white rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 shadow-xl"
+            className="absolute right-4 top-1/2 flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-gray-900 opacity-0 shadow-xl transition-all duration-300 hover:scale-110 hover:bg-red-600 hover:text-white group-hover:opacity-100"
           >
-            <ArrowRight className="w-6 h-6" />
+            <ArrowRight className="h-6 w-6" />
           </button>
 
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+          <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
             {projectDetails.otherImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveImageIndex(index)}
-                className={`transition-all duration-300 rounded-full ${
-                  index === activeImageIndex 
-                    ? 'w-8 h-2 bg-red-600' 
-                    : 'w-2 h-2 bg-white/60 hover:bg-white'
+                className={`rounded-full transition-all duration-300 ${
+                  index === activeImageIndex ? 'h-2 w-8 bg-red-600' : 'h-2 w-2 bg-white/60 hover:bg-white'
                 }`}
               />
             ))}
@@ -297,38 +257,39 @@ export default function ProjectDetail() {
         </div>
 
         {projectDetails.otherImages.length > 1 && (
-          <div className="grid grid-cols-3 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 xl:grid-cols-5">
             {projectDetails.otherImages.map((image, index) => (
               <button
                 key={index}
                 onClick={() => setActiveImageIndex(index)}
-                className={`relative aspect-[4/3] rounded-lg overflow-hidden transition-all duration-500 group/thumb ${
-                  activeImageIndex === index 
-                    ? 'ring-4 ring-red-600 shadow-2xl scale-105' 
-                    : 'ring-2 ring-gray-200 hover:ring-red-400 hover:scale-105'
+                className={`group/thumb relative overflow-hidden rounded-lg transition-all duration-500 ${
+                  activeImageIndex === index
+                    ? 'scale-105 ring-4 ring-red-600 shadow-2xl'
+                    : 'ring-2 ring-gray-200 hover:scale-105 hover:ring-red-400'
                 }`}
-                style={{ 
+                style={{
+                  height: '280px',
                   animationDelay: `${index * 0.1}s`,
-                  animation: 'slideUp 0.6s ease-out both'
+                  animation: 'slideUp 0.6s ease-out both',
                 }}
               >
-                <img 
-                  src={image} 
-                  alt={`Thumbnail ${index + 1}`} 
-                  className={`w-full h-full object-cover transition-all duration-500 ${
+                <img
+                  src={image}
+                  alt={`Thumbnail ${index + 1}`}
+                  className={`h-full w-full object-cover transition-all duration-500 ${
                     activeImageIndex === index ? 'scale-100' : 'scale-100 group-hover/thumb:scale-110'
                   }`}
                 />
                 {activeImageIndex === index && (
-                  <div className="absolute inset-0 bg-red-600/90 flex flex-col items-center justify-center animate-fade-in">
-                    <Eye className="w-6 h-6 text-white mb-2 animate-bounce" />
-                    <span className="text-white text-xs font-bold uppercase tracking-wider">Viewing</span>
+                  <div className="animate-fade-in absolute inset-0 flex flex-col items-center justify-center bg-red-600/90">
+                    <Eye className="mb-2 h-6 w-6 animate-bounce text-white" />
+                    <span className="text-xs font-bold uppercase tracking-wider text-white">Viewing</span>
                   </div>
                 )}
                 {activeImageIndex !== index && (
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="text-white text-center">
-                      <div className="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center mb-2 mx-auto">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover/thumb:opacity-100">
+                    <div className="text-center text-white">
+                      <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full border-2 border-white">
                         <span className="text-sm font-bold">{index + 1}</span>
                       </div>
                       <p className="text-xs font-semibold uppercase tracking-wider">View</p>
@@ -358,124 +319,159 @@ export default function ProjectDetail() {
         .animate-slide-in-right { animation: slide-in-right 0.6s ease-out; }
       `}</style>
 
-      {/* Project Phases */}
-      <div className="bg-gradient-to-b from-gray-50 to-white py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 mb-4">Project Development</h2>
-            <p className="text-lg text-gray-600">From concept to completion</p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="relative group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 to-orange-500 transform origin-left transition-transform duration-500 group-hover:scale-x-100 scale-x-0"></div>
-              <div className="p-8 bg-white border-2 border-gray-200 rounded-2xl hover:border-red-600 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full">
-                <div className="w-16 h-16 flex items-center justify-center bg-gray-100 group-hover:bg-red-600 rounded-xl mb-6 transition-colors duration-300">
-                  <Target className="w-8 h-8 text-gray-900 group-hover:text-white transition-colors duration-300" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Challenge</h3>
-                <p className="text-gray-600 leading-relaxed">{projectDetails.challenge}</p>
-                <div className="absolute bottom-6 right-6 text-8xl font-black text-gray-100 group-hover:text-red-50 transition-colors duration-300">01</div>
-              </div>
-            </div>
-
-            <div className="relative group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 to-orange-500 transform origin-left transition-transform duration-500 group-hover:scale-x-100 scale-x-0"></div>
-              <div className="p-8 bg-white border-2 border-gray-200 rounded-2xl hover:border-red-600 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full">
-                <div className="w-16 h-16 flex items-center justify-center bg-gray-100 group-hover:bg-red-600 rounded-xl mb-6 transition-colors duration-300">
-                  <Lightbulb className="w-8 h-8 text-gray-900 group-hover:text-white transition-colors duration-300" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Solution</h3>
-                <p className="text-gray-600 leading-relaxed">{projectDetails.solution}</p>
-                <div className="absolute bottom-6 right-6 text-8xl font-black text-gray-100 group-hover:text-red-50 transition-colors duration-300">02</div>
-              </div>
-            </div>
-
-            <div className="relative group">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 to-orange-500 transform origin-left transition-transform duration-500 group-hover:scale-x-100 scale-x-0"></div>
-              <div className="p-8 bg-white border-2 border-gray-200 rounded-2xl hover:border-red-600 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 h-full">
-                <div className="w-16 h-16 flex items-center justify-center bg-gray-100 group-hover:bg-red-600 rounded-xl mb-6 transition-colors duration-300">
-                  <TrendingUp className="w-8 h-8 text-gray-900 group-hover:text-white transition-colors duration-300" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Results</h3>
-                <p className="text-gray-600 leading-relaxed">{projectDetails.result}</p>
-                <div className="absolute bottom-6 right-6 text-8xl font-black text-gray-100 group-hover:text-red-50 transition-colors duration-300">03</div>
-              </div>
-            </div>
-          </div>
+      <div className="relative overflow-hidden bg-[linear-gradient(135deg,_#0f172a_0%,_#111827_45%,_#7f1d1d_100%)] py-24">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute -left-12 top-10 h-40 w-40 rounded-full bg-red-500 blur-3xl"></div>
+          <div className="absolute right-0 top-0 h-56 w-56 rounded-full bg-white/10 blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/3 h-48 w-48 rounded-full bg-red-700/30 blur-3xl"></div>
         </div>
-      </div>
 
-      {/* Services Section */}
-      <div className="bg-gray-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-5 gap-12">
-            <div className="lg:col-span-2">
-              <span className="inline-block px-4 py-2 bg-red-600/20 text-red-500 text-xs font-bold uppercase tracking-widest rounded mb-6">
-                Expertise
-              </span>
-              <h2 className="text-4xl lg:text-5xl font-black mb-6">Services Delivered</h2>
-              <p className="text-gray-300 leading-relaxed mb-8">
-                Our multidisciplinary team brought together diverse expertise to deliver a comprehensive solution that exceeded expectations.
-              </p>
-              
-              {projectDetails.awards && projectDetails.awards.length > 0 && (
-                <div>
-                  <h4 className="text-sm font-bold uppercase tracking-wider text-red-500 mb-4">Recognition</h4>
-                  <div className="space-y-3">
-                    {projectDetails.awards.map((award, index) => (
-                      <div key={index} className="flex items-center gap-3 text-gray-300">
-                        <Award className="w-5 h-5 text-red-500 flex-shrink-0" />
-                        <span>{award}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+        <div className="relative mx-auto max-w-6xl px-6">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-sm">
+            <div className="grid gap-10 px-8 py-12 lg:grid-cols-[1.4fr_0.8fr] lg:px-12 lg:py-14">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.35em] text-red-400">Ready To Build</p>
+                <h2 className="mt-4 max-w-3xl text-4xl font-black leading-tight text-white lg:text-6xl">
+                  Interested in a Similar Project?
+                </h2>
+                <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-300">
+                  Let&apos;s shape a space that reflects your goals, site conditions, and design aspirations with the same attention to detail seen in this project.
+                </p>
 
-            <div className="lg:col-span-3">
-              <div className="grid grid-cols-2 gap-5">
-                {projectDetails.services.map((service, index) => (
-                  <div 
-                    key={index}
-                    className="p-6 bg-white/5 hover:bg-red-600 border-2 border-white/10 hover:border-red-600 rounded-xl transition-all duration-300 hover:-translate-y-2 text-center group"
+                <div className="mt-10 flex flex-wrap gap-4">
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="flex items-center gap-3 rounded-xl bg-red-600 px-10 py-5 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:bg-red-700 hover:shadow-2xl hover:shadow-red-500/40"
                   >
-                    <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-                      <div className="w-full h-full bg-red-600/20 group-hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors duration-300">
-                        <div className="w-6 h-6 border-2 border-red-500 group-hover:border-white rounded transition-colors duration-300"></div>
-                      </div>
-                    </div>
-                    <p className="font-semibold text-sm uppercase tracking-wide">{service}</p>
-                  </div>
-                ))}
+                    Start Your Project
+                    <ArrowRight className="h-5 w-5" />
+                  </button>
+                  <button className="flex items-center gap-3 rounded-xl border border-white/20 bg-white/5 px-10 py-5 font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-1 hover:border-white/40 hover:bg-white/10">
+                    <Share2 className="h-5 w-5" />
+                    Share Project
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p className="text-sm font-bold uppercase tracking-[0.25em] text-red-400">Consultation</p>
+                  <p className="mt-3 text-sm leading-relaxed text-gray-300">
+                    Discuss your vision, budget, and site requirements with our team.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p className="text-sm font-bold uppercase tracking-[0.25em] text-red-400">Planning</p>
+                  <p className="mt-3 text-sm leading-relaxed text-gray-300">
+                    Get a thoughtful direction for design, execution, and timelines.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                  <p className="text-sm font-bold uppercase tracking-[0.25em] text-red-400">Execution</p>
+                  <p className="mt-3 text-sm leading-relaxed text-gray-300">
+                    Move forward with a team focused on quality, detail, and delivery.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-white py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6">
-            Interested in a Similar Project?
-          </h2>
-          <p className="text-lg text-gray-600 mb-10 leading-relaxed">
-            Let's discuss how we can bring your vision to life with the same level of excellence and attention to detail.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button 
-              onClick={() => setModalOpen(true)}
-              className="px-10 py-5 bg-gray-900 hover:bg-red-600 text-white font-bold uppercase tracking-wide rounded-lg transition-all duration-300 shadow-2xl hover:shadow-red-500/50 flex items-center gap-3"
+      <div className="border-t border-white/10 bg-gray-950">
+        <div className="mx-auto max-w-7xl px-6 py-14">
+          <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.35em] text-red-500">Explore More</p>
+              <h2 className="mt-3 text-3xl font-black text-white">Continue Through Our Project Portfolio</h2>
+            </div>
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-gray-300 transition-colors duration-300 hover:text-white"
             >
-              Start Your Project
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="px-10 py-5 border-2 border-gray-900 hover:bg-gray-900 hover:text-white text-gray-900 font-bold uppercase tracking-wide rounded-lg transition-all duration-300 flex items-center gap-3">
-              <Share2 className="w-5 h-5" />
-              Share Project
-            </button>
+              View All Projects
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2">
+            {prevProject ? (
+              <Link
+                to={`/project/${prevProject.slug}`}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-red-500/70 hover:bg-white/[0.06]"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                <div className="relative flex h-full items-start gap-5">
+                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-white/10 text-white transition-colors duration-300 group-hover:bg-red-600">
+                    <ChevronLeft className="h-6 w-6" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500">Previous Project</p>
+                    <p className="mt-4 text-2xl font-black leading-tight text-white transition-colors duration-300 group-hover:text-red-400">
+                      {prevProject.title}
+                    </p>
+                    {prevProject.location && (
+                      <p className="mt-3 flex items-center gap-2 text-sm text-gray-400">
+                        <MapPin className="h-4 w-4 text-red-500" />
+                        <span className="truncate">{prevProject.location}</span>
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            ) : (
+              <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 opacity-60">
+                <div className="flex h-full items-start gap-5">
+                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-white/10 text-gray-500">
+                    <ChevronLeft className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500">Previous Project</p>
+                    <p className="mt-4 text-2xl font-black leading-tight text-white">You are viewing the first project.</p>
+                    <p className="mt-3 text-sm text-gray-400">There is no previous project available in the current sequence.</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {nextProject ? (
+              <Link
+                to={`/project/${nextProject.slug}`}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-red-500/70 hover:bg-white/[0.06]"
+              >
+                <div className="absolute inset-0 bg-gradient-to-bl from-red-600/10 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                <div className="relative flex h-full items-start justify-between gap-5 text-right">
+                  <div className="min-w-0 flex-1">
+                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500">Next Project</p>
+                    <p className="mt-4 text-2xl font-black leading-tight text-white transition-colors duration-300 group-hover:text-red-400">
+                      {nextProject.title}
+                    </p>
+                    {nextProject.location && (
+                      <p className="mt-3 flex items-center justify-end gap-2 text-sm text-gray-400">
+                        <span className="truncate">{nextProject.location}</span>
+                        <MapPin className="h-4 w-4 flex-shrink-0 text-red-500" />
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-white/10 text-white transition-colors duration-300 group-hover:bg-red-600">
+                    <ChevronRight className="h-6 w-6" />
+                  </div>
+                </div>
+              </Link>
+            ) : (
+              <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-7 opacity-60">
+                <div className="flex h-full items-start justify-between gap-5 text-right">
+                  <div className="flex-1">
+                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-gray-500">Next Project</p>
+                    <p className="mt-4 text-2xl font-black leading-tight text-white">You are viewing the latest project.</p>
+                    <p className="mt-3 text-sm text-gray-400">There is no next project available in the current sequence.</p>
+                  </div>
+                  <div className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl bg-white/10 text-gray-500">
+                    <ChevronRight className="h-6 w-6" />
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
