@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { gsap } from 'gsap';
+import heroVideo from '../assets/hero/v1.mp4';
+// import heroVideo from '../assets/hero/v2.mp4';
 
 export default function EnhancedAntraHero() {
   const headingRef = useRef(null);
@@ -9,7 +11,7 @@ export default function EnhancedAntraHero() {
   const buttonRef = useRef(null);
 
   const slideData = {
-    image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80',
+    // image: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=1920&q=80',
     tagline: 'AGARWAL & ASSOCIATES',
     heading: 'Crafting Architectural Excellence',
     paragraph: "We transform visions into iconic structures, blending aesthetic brilliance with functional design to create spaces that inspire."
@@ -49,7 +51,7 @@ export default function EnhancedAntraHero() {
       >
       </motion.nav>
 
-      {/* Background Image */}
+      {/* Background Video */}
       <div className="absolute inset-0 w-full h-full">
         <motion.div
           initial={{ opacity: 0 }}
@@ -59,11 +61,13 @@ export default function EnhancedAntraHero() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-black/50 via-black/30 to-transparent z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
-          <img
-            src={slideData.image}
-            alt={slideData.heading}
+          <video
             className="object-cover w-full h-full"
-            loading="eager"
+            src={heroVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
           />
         </motion.div>
       </div>
