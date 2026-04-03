@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { MapPin, Calendar, ChevronLeft, ArrowRight, Eye, Award, Users, Target, Lightbulb, TrendingUp, Download, Share2, ExternalLink, Clock, Ruler } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import projectData from '../Data/ProjectData';
-import Breadcrumb from '../components/Breadcrumb';
 import InquiryModal from '../components/InquiryModal';
 import { fetchProjectData } from '../redux/dataSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -98,40 +97,31 @@ export default function ProjectDetail() {
   return (
     <>
       <InquiryModal isOpen={modalOpen} closeModal={() => setModalOpen(false)} />
-      
-      <Breadcrumb 
-        title="Project Detail" 
-        items={[
-          { name: "Projects", path: "/Projects" },
-          { name: "Project Detail", path: `/project/${slug}` },
-        ]}
-      />
+
+   
 
       {/* Hero Section */}
       <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvZz48L3N2Zz4=')] opacity-20"></div>
         
         <div className="relative max-w-7xl mx-auto px-6 py-16 lg:py-24">
+
+          {/* Back Button */}
           <Link 
             to="/projects" 
-            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 hover:border-red-500 rounded-lg text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:bg-white/5 mb-12 group"
+            className="inline-flex items-center gap-2 px-6 py-3 border-2 border-white/20 hover:border-red-500 rounded-lg text-sm font-semibold uppercase tracking-wider transition-all duration-300 hover:bg-white/5 mt-6 group"
           >
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             Back to Projects
           </Link>
 
+          {/* ❌ Category badge + project number removed */}
+
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="flex items-center gap-4 mb-6">
-                <span className="px-4 py-2 bg-red-600 text-white text-xs font-bold uppercase tracking-widest rounded">
-                  {project.category}
-                </span>
-                <span className="text-6xl font-bold text-white/10">
-                  #{typeof project.id === 'number' ? project.id.toString().padStart(2, '0') : '00'}
-                </span>
-              </div>
 
-              <h1 className="text-5xl lg:text-7xl font-black mb-6 leading-tight">
+              {/* Title — font size reduced */}
+              <h1 className="text-3xl lg:text-4xl font-black mb-6 leading-tight">
                 {project.title}
               </h1>
 
@@ -178,7 +168,6 @@ export default function ProjectDetail() {
                   <p className="text-lg font-bold text-gray-900">{projectDetails.client}</p>
                 </div>
               </div>
-              {/* Decorative element */}
               <div className="absolute -top-4 -right-4 w-32 h-32 bg-red-600/10 rounded-2xl -z-10 animate-pulse"></div>
               <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-red-600/10 rounded-2xl -z-10 animate-pulse" style={{ animationDelay: '1s' }}></div>
             </div>
@@ -272,7 +261,6 @@ export default function ProjectDetail() {
             ))}
           </div>
           
-          {/* Hover Overlay with Info */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <div className="absolute bottom-8 left-8 text-white">
               <p className="text-sm font-semibold uppercase tracking-wider mb-2 opacity-80">Image {activeImageIndex + 1} of {projectDetails.otherImages.length}</p>
@@ -280,7 +268,6 @@ export default function ProjectDetail() {
             </div>
           </div>
 
-          {/* Navigation Arrows on Image */}
           <button 
             onClick={prevImage}
             className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 flex items-center justify-center bg-white/90 hover:bg-red-600 text-gray-900 hover:text-white rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 shadow-xl"
@@ -294,7 +281,6 @@ export default function ProjectDetail() {
             <ArrowRight className="w-6 h-6" />
           </button>
 
-          {/* Progress Dots */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
             {projectDetails.otherImages.map((_, index) => (
               <button
@@ -357,43 +343,19 @@ export default function ProjectDetail() {
 
       <style jsx>{`
         @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
-
         @keyframes slide-in-right {
-          from {
-            opacity: 0;
-            transform: translateX(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+          from { opacity: 0; transform: translateX(20px); }
+          to { opacity: 1; transform: translateX(0); }
         }
-
-        .animate-fade-in {
-          animation: fade-in 0.6s ease-out;
-        }
-
-        .animate-slide-in-right {
-          animation: slide-in-right 0.6s ease-out;
-        }
+        .animate-fade-in { animation: fade-in 0.6s ease-out; }
+        .animate-slide-in-right { animation: slide-in-right 0.6s ease-out; }
       `}</style>
 
       {/* Project Phases */}
@@ -517,9 +479,6 @@ export default function ProjectDetail() {
           </div>
         </div>
       </div>
-
-      {/* Related Projects */}
-      
     </>
   );
 }
