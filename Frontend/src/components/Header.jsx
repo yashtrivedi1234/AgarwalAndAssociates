@@ -85,8 +85,10 @@ export default function Header() {
   const { pathname } = useLocation();
 
   const isBlogDetail = /^\/blog-detail(s)?\//.test(pathname);
+  const isProjectDetail = /^\/project\//.test(pathname);
   const isScrolled = useScrolled();
-  const isLight = isBlogDetail || isScrolled || (!isHomePage && !hasBreadcrumb);
+  const isLight =
+    isBlogDetail || isProjectDetail || isScrolled || (!isHomePage && !hasBreadcrumb);
   const isTransparent = !isLight;
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -173,7 +175,9 @@ export default function Header() {
     <>
       <header
         ref={headerRef}
-        className={`fixed inset-x-0 top-0 z-[9999] transition-all duration-300 ${
+        className={`inset-x-0 top-0 z-[9999] transition-all duration-300 ${
+          isProjectDetail ? "absolute" : "fixed"
+        } ${
           isLight
             ? "bg-white/95 backdrop-blur-xl"
             : "bg-transparent"
