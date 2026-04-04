@@ -80,7 +80,7 @@ export default function ServicesList() {
           transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, amount: 0.5 }}
         >
-          <h2 className="text-4xl xl:text-5xl font-bold leading-tight">
+          <h2 className="text-3xl xl:text-4xl font-bold leading-tight">
             Explore Our <span className="text-[#FF0000]">Comprehensive</span>
             <br />
             <span className="text-[#FF0000]">Architectural</span> Services
