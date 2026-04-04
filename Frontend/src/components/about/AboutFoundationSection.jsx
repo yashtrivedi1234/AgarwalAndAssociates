@@ -3,7 +3,7 @@ import { Building, Heart, Plus, Target, Users } from "lucide-react";
 
 export default function AboutFoundationSection({ activeTab, onTabChange, coreValues }) {
   return (
-    <div className="mb-16 lg:mb-24">
+    <div className="mb-8 lg:mb-10">
       <div className="text-center mb-12">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 mb-4">
           <Target size={16} className="text-red-600" />

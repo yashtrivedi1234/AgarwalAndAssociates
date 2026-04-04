@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AboutStatsSection({ stats }) {
   return (
-    <div className="mb-16 lg:mb-24">
+    <div className="mb-8 lg:mb-10">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
           <div key={index} className="relative group">

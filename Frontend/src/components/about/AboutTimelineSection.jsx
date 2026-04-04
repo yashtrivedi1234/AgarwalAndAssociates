@@ -3,8 +3,8 @@ import { Clock } from "lucide-react";
 
 export default function AboutTimelineSection({ milestones }) {
   return (
-    <div className="mb-16 lg:mb-24">
-      <div className="text-center mb-12">
+    <div className="">
+      <div className="text-center ">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-orange-500/10 border border-red-500/20 mb-4">
           <Clock size={16} className="text-red-600" />
           <span className="text-sm font-bold text-red-600">Our Journey</span>
